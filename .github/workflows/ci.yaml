@@ -19,5 +19,5 @@ jobs:
 
       - name: push image
         run: |
-            docker login -u mzsterling -p ${{secreats.REGISTRY_PASS}}
+            docker login -u mzsterling -p ${{secrets.REGISTRY_PASS}}
             docker push mzsterling/portfolio
