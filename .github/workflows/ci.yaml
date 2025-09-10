@@ -23,4 +23,4 @@ jobs:
         run: |
             docker login -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASS}}
             docker push ${{secrets.REGISTRY_USER}}/portfolio:${{github.run_number}}
-            docker push ${{secrets.REGISTRY_USER}}/portfolio:
+            docker push ${{secrets.REGISTRY_USER}}/portfolio
