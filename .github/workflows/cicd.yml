@@ -24,4 +24,13 @@ jobs:
               run: |
                    docker build -t ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
                    docker build -t ${{secrets.REGISTRY_USER}}/portcicd .
-             
+
+    deploy: 
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+            - name: Push Docker image
+              run: |
+                docker push  ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
+
+      
