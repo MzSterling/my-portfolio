@@ -1,4 +1,4 @@
-name: Utc App ci/cd
+name: cicduser/Utc App 
 
 on:
   push:
@@ -17,8 +17,13 @@ jobs:
             - uses: actions/setup-python@v4  #install python on our runner
               with:
                 python-version: ${{env.python_version}} # or $python_version
+            - name: Install pytest dependencies
+              run: |
+                   pip install pytest
+                  
             - name: unit test #testing our code
-              run: pytest tests/   #one of the unit test tools for python
+              run: pytest   #one of the unit test tools for python
+
             - name: Build image #we already have a docker file(ie template) in on Dokerfile
               #run: docker build -t mzsterling/portcicd . # command to build our image
               run: |
