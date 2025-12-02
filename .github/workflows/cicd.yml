@@ -1,0 +1,27 @@
+name: Utc App ci/cd
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env: 
+    python_version: 3.11
+
+jobs: 
+    build:
+        runs-on: ubuntu-latest
+        steps: 
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v4  #install python on our runner
+              with:
+                python-version: ${{env.python_version}} # or $python_version
+            - name: unit test #testing our code
+              run: pytest   #one of the unit test tools for python
+            - name: Build image #we already have a docker file(ie template) in on Dokerfile
+              #run: docker build -t mzsterling/portcicd . # command to build our image
+              run: |
+                   docker build -t ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
+                   docker build -t ${{secrets.REGISTRY_USER}}/portcicd .
+             
