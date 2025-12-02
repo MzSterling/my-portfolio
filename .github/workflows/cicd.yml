@@ -31,6 +31,4 @@ jobs:
       steps:
             - name: Push Docker image
               run: |
-                docker push  ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
-
-      
+                docker push  ${{secrets.REGISTRY_USER}}/portcicd
