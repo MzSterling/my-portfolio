@@ -1,4 +1,4 @@
-name: cicduser/Utc App 
+name: cicduser/Utc
 
 on:
   push:
