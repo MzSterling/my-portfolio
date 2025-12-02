@@ -20,15 +20,13 @@ jobs:
             - name: unit test #testing our code
               run: pytest || true   #one of the unit test tools for python
             - name: Build image #we already have a docker file(ie template) in on Dokerfile
-              #run: docker build -t mzsterling/portcicd . # command to build our image
+              
               run: |
                    docker build -t ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
                    docker build -t ${{secrets.REGISTRY_USER}}/portcicd .
 
-    deploy: 
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-            - name: Push Docker image
+            - name: push image to docker hub
               run: |
-                docker push  ${{secrets.REGISTRY_USER}}/portcicd
+                   docker login -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASS}}
+                   docker push ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}}
+                   docker push ${{secrets.REGISTRY_USER}}/portcicd
