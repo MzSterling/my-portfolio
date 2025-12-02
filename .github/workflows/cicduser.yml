@@ -25,6 +25,7 @@ jobs:
 
             - name: Run unit tests
               run: |
+               echo "setting PYTHONPATH"
                export PYTHONPATH=$PYTHONPATH:$(pwd)
                pytest -v tests/
 
