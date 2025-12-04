@@ -22,12 +22,12 @@ jobs:
             - name: Build image #we already have a docker file(ie template) in on Dokerfile
               
               run: |
-                   docker build -t ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
-                  # docker build -t ${{secrets.REGISTRY_USER}}/portcicd .
+                   docker build -t ${{secrets.REGISTRY_USER}}/wk16portcicd:${{github.run_number}} .
+                  # docker build -t ${{secrets.REGISTRY_USER}}/wk16portcicd .
 
             - name: push image to docker hub
               run: |
                    docker login -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASS}}
-                   docker push ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}}
+                   docker push ${{secrets.REGISTRY_USER}}/wk16portcicd:${{github.run_number}}
                    
-                  # docker push ${{secrets.REGISTRY_USER}}/portcicd
+                   docker push ${{secrets.REGISTRY_USER}}/wk16portcicd
