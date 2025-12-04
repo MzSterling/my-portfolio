@@ -1,4 +1,4 @@
-name: Utc App ci/cd
+name: wk16Utc App ci/cd
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
               
               run: |
                    docker build -t ${{secrets.REGISTRY_USER}}/portcicd:${{github.run_number}} .
-                   docker build -t ${{secrets.REGISTRY_USER}}/portcicd .
+                  # docker build -t ${{secrets.REGISTRY_USER}}/portcicd .
 
             - name: push image to docker hub
               run: |
